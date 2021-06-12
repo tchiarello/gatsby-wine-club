@@ -1,5 +1,5 @@
 import * as React from "react";
 
-export default function IndexPage() {
+export default function Header() {
   return <div>OI</div>;
 }
