@@ -1,3 +1,5 @@
+// cria valores iniciais para o firestore e deve ser rodado apenas uma vez
+
 const admin = require("firebase-admin");
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
@@ -22,7 +24,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-const db = admin.firestore();
+const db = admin.firestore(); // retorna um objeto com métodos do firestore
 
 const dessert = require("./data/dessert.json");
 const port = require("./data/port.json");
@@ -33,7 +35,7 @@ const whites = require("./data/whites.json");
 
 // slice: Error: 3 INVALID_ARGUMENT: maximum 500 writes allowed per request
 const wines = [
-  ...dessert.map((wine) => ({ ...wine, categoryId: "dessert" })).slice(0, 30),
+  ...dessert.map((wine) => ({ ...wine, categoryId: "dessert" })).slice(0, 30), //doc
   ...port.map((wine) => ({ ...wine, categoryId: "port" })).slice(0, 30),
   ...reds.map((wine) => ({ ...wine, categoryId: "reds" })).slice(0, 30),
   ...rose.map((wine) => ({ ...wine, categoryId: "rose" })).slice(0, 30),
@@ -44,7 +46,7 @@ const wines = [
 ];
 
 const categories = [
-  { id: "dessert", title: "Dessert Wines" },
+  { id: "dessert", title: "Dessert Wines" }, // doc
   { id: "port", title: "Port Wines" },
   { id: "reds", title: "Red Wines" },
   { id: "rose", title: "Rose Wines" },
@@ -53,13 +55,15 @@ const categories = [
 ];
 
 const collections = {
-  wines,
+  wines, // key
   categories,
 };
 
-// Adiciona dados
+// Adiciona dados em massa
 const batch = db.batch();
 
+// retorna as keys de um objeto como array de string
+// ['wines', 'categories']
 Object.keys(collections).forEach((key) => {
   const collection = collections[key];
 

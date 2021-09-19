@@ -50,6 +50,7 @@ export default function CategoryPage(props) {
   );
 }
 
+// $categoryId: String = context da createPages
 export const query = graphql`
   query getData($categoryId: String) {
     firebaseCategory(categoryId: { eq: $categoryId }) {

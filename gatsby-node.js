@@ -1,10 +1,11 @@
-const firebase = require("firebase");
-require("firebase/firestore");
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
+const firebase = require("firebase");
+require("firebase/firestore");
 const path = require("path");
 
+// inicializa o banco de dados do firebase
 firebase.initializeApp({
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "wine-club-b6626.firebaseapp.com",
@@ -16,13 +17,15 @@ firebase.initializeApp({
   appId: "1:517708796651:web:e82a9a896b5f34609a64ae",
 });
 
-// Requisitar dados para enviar pro graphql do gatsby
+// Os plug-ins de origem “fornecem” dados de locais remotos ou locais para o que Gatsby chama de nodes.
+// Os plug-ins de origem convertem dados de qualquer origem em um formato que Gatsby pode processar.
+// Requisitar dados externos de apis diferentes para enviar pro graphql do gatsby
 exports.sourceNodes = async ({ actions, createContentDigest }) => {
   const allCategories = await firebase
     .firestore()
     .collection("/categories")
     .get();
-  const categoriesData = allCategories.docs.map((doc) => doc.data());
+  const categoriesData = allCategories.docs.map((doc) => doc.data()); // .data() retorna o json()
 
   const allWines = await firebase
     .firestore()
@@ -31,18 +34,20 @@ exports.sourceNodes = async ({ actions, createContentDigest }) => {
     .get();
   const winesData = allWines.docs.map((doc) => doc.data());
 
+  // cria nodes gatsby para gerar queries no graphql
   categoriesData.forEach((category) => {
     actions.createNode({
       ...category,
       categoryId: category.id,
       id: `firebase-categories-${category.id}`,
       parent: null,
-      children: winesData
-        .filter((wine) => wine.categoryId === category.id)
-        .map((wine) => `firebase-wines-${category.id}-${wine.id}`),
+      // cria o childrenFirebaseWine no graphql
+      children: winesData // vem todos os vinhos
+        .filter((wine) => wine.categoryId === category.id) // filtra os vinhos da mesma categoria
+        .map((wine) => `firebase-wines-${category.id}-${wine.id}`), // retorna a array de strings - esse id é igual ao id do winesData
       internal: {
-        type: "FirebaseCategory",
-        contentDigest: createContentDigest(category),
+        type: "FirebaseCategory", // cria um tipo no graphql
+        contentDigest: createContentDigest(category), // Ajuda Gatsby a evitar trabalho extra em dados que não foram alterados.
       },
     });
   });
@@ -80,6 +85,9 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
+  // Pq a url muda nao podia ser criado na pasta Pages.
+  // Ela é reservada para o gatsby que irá criar as paginas automaticamente com base no nome dos arquivos
+
   // Homepage
   actions.createPage({
     path: `/`,
@@ -92,7 +100,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/categories/${category.categoryId}`,
       component: path.resolve("./src/templates/category-page.js"),
       context: {
-        categoryId: category.categoryId,
+        categoryId: category.categoryId, // para resgatar o valor e fazer a query na pagina. Vem como parametro na query do graphql
       },
     });
   });

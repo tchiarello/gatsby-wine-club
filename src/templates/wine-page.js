@@ -100,8 +100,38 @@ const SimilarWinesContainer = styled.div`
   }
 `;
 
+const StarsOuter = styled.div`
+  display: inline-block;
+  position: relative;
+  &:before {
+    content: "\f006 \f006 \f006 \f006 \f006";
+  }
+`;
+const StarsInner = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  /* width: ${(props) => props.percentage}; */
+
+  &:before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    color: #f8ce0b;
+  }
+`;
+
 export default function WinePage({ data }) {
   const { firebaseWine, similarWines } = data;
+
+  // const starTotal = 5;
+  // for (const rating in firebaseWine.rating.average) {
+  //   const starPercentage =
+  //     (firebaseWine.rating.average[rating] / starTotal) * 100;
+  //   return (starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`);
+  // document.querySelector(`.${rating} .stars-inner`).style.width =
+  //   starPercentageRounded;
+  // }
 
   return (
     <div>
@@ -114,6 +144,9 @@ export default function WinePage({ data }) {
             <Winery>{firebaseWine.winery}</Winery>
             <WineLocation>{firebaseWine.location}</WineLocation>
             <Rating>
+              <StarsOuter>
+                <StarsInner />
+              </StarsOuter>
               {firebaseWine.rating.average} / 5.0 of{" "}
               {firebaseWine.rating.reviews}
             </Rating>
