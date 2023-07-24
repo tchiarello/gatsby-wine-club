@@ -1,8 +1,8 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import styled from "styled-components";
-import Header from "../components/Header";
-import WineCard from "../components/WineCard";
+import * as React from 'react';
+import {graphql} from 'gatsby';
+import styled from 'styled-components';
+import Header from '../components/Header';
+import WineCard from '../components/Card';
 
 const Container = styled.div`
   padding: 10px 10px 100px;
@@ -53,7 +53,7 @@ export default function CategoryPage(props) {
 // $categoryId: String = context da createPages
 export const query = graphql`
   query getData($categoryId: String) {
-    firebaseCategory(categoryId: { eq: $categoryId }) {
+    firebaseCategory(categoryId: {eq: $categoryId}) {
       childrenFirebaseWine {
         image
         wine

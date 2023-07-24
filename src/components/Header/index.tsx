@@ -1,7 +1,7 @@
-import * as React from "react";
-import styled from "styled-components";
-import logo from "../images/wine-club-logo.png";
-import { Link } from "gatsby";
+import * as React from 'react';
+import styled from 'styled-components';
+import logo from '../../images/wine-club-logo.png';
+import {Link} from 'gatsby';
 
 const Container = styled.div`
   text-align: center;

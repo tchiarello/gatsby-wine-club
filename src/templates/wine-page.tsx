@@ -1,8 +1,8 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import Header from "../components/Header";
-import styled from "styled-components";
-import WineCard from "../components/WineCard";
+import * as React from 'react';
+import {graphql} from 'gatsby';
+import Header from '../components/Header';
+import styled from 'styled-components';
+import WineCard from '../components/Card';
 
 const Container = styled.div`
   max-width: 950px;
@@ -104,7 +104,7 @@ const StarsOuter = styled.div`
   display: inline-block;
   position: relative;
   &:before {
-    content: "\f006 \f006 \f006 \f006 \f006";
+    content: '\f006 \f006 \f006 \f006 \f006';
   }
 `;
 const StarsInner = styled.div`
@@ -116,13 +116,13 @@ const StarsInner = styled.div`
   /* width: ${(props) => props.percentage}; */
 
   &:before {
-    content: "\f005 \f005 \f005 \f005 \f005";
+    content: '\f005 \f005 \f005 \f005 \f005';
     color: #f8ce0b;
   }
 `;
 
-export default function WinePage({ data }) {
-  const { firebaseWine, similarWines } = data;
+export default function WinePage({data}) {
+  const {firebaseWine, similarWines} = data;
 
   // const starTotal = 5;
   // for (const rating in firebaseWine.rating.average) {
@@ -147,7 +147,7 @@ export default function WinePage({ data }) {
               <StarsOuter>
                 <StarsInner />
               </StarsOuter>
-              {firebaseWine.rating.average} / 5.0 of{" "}
+              {firebaseWine.rating.average} / 5.0 of{' '}
               {firebaseWine.rating.reviews}
             </Rating>
           </div>
@@ -171,7 +171,7 @@ export default function WinePage({ data }) {
 
 export const query = graphql`
   query getWine($wineId: Int, $categoryId: String) {
-    firebaseWine(categoryId: { eq: $categoryId }, wineId: { eq: $wineId }) {
+    firebaseWine(categoryId: {eq: $categoryId}, wineId: {eq: $wineId}) {
       wine
       winery
       wineId
@@ -184,8 +184,8 @@ export const query = graphql`
     }
 
     similarWines: allFirebaseWine(
-      filter: { categoryId: { eq: $categoryId }, wineId: { nin: [$wineId] } }
-      sort: { fields: rating___average, order: DESC }
+      filter: {categoryId: {eq: $categoryId}, wineId: {nin: [$wineId]}}
+      sort: {fields: rating___average, order: DESC}
       limit: 2
     ) {
       nodes {
