@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "Wine Club",
+    title: 'Wine Club',
   },
   plugins: [`gatsby-plugin-styled-components`],
 };
