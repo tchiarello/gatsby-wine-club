@@ -3,6 +3,7 @@ node_modules/
 public
 
 .vercel
+.env
 .env.development
 .DS_Store
 .vscode

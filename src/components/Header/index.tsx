@@ -1,7 +1,8 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import logo from '../../images/wine-club-logo.png';
 import {Link} from 'gatsby';
+import logo from '../../images/wine-club-logo.png';
+
+import styled from 'styled-components';
 
 const Container = styled.div`
   text-align: center;
@@ -18,7 +19,7 @@ export default function Header() {
   return (
     <Container>
       <Link to="/">
-        <Image src={logo} alt="Logo Wine Club"></Image>
+        <Image src={logo} alt="Logo Wine Club" />
       </Link>
     </Container>
   );
