@@ -48,8 +48,6 @@ $ npm run test
 
 <!-- - [clsx](https://github.com/lukeed/clsx#readme): a utility for constructing className strings conditionally. -->
 
-<!-- - [Vitest](https://vitest.dev/): a Vite-native unit test framework. Vitest supports HMR which really speeds up your workflow. -->
-
 <!-- - [Testing Library](https://testing-library.com/): a simple and complete testing utilities that encourage good testing practices. -->
 
 ---
@@ -58,9 +56,35 @@ $ npm run test
 
 - `components`: contains sub-components of pages. They either break down the functionality of such pages, or are extracted for code reuse between different pages.
 
-- `pages`: contains the app's pages. These are the top-level components in the hierarchy and contain the main logic to render the sub-components.
+- `pages`: contains the app's pages. Components inside this file become pages automatically with paths based on their file name.
 
-- `templates`:
+- `templates`: contains templates for programmatically creating pages with dynamic URLs.
+
+---
+
+### Firebase
+
+The firebase data integration happens on the file `gatsby-node.ts`. Code in the this file is run once in the process of building the site. You can use its APIs to create pages dynamically, add data into GraphQL, or respond to events during the build lifecycle.
+
+1. `graphql`: query GraphQL API.
+
+2. `actions`: Gatsby uses Redux internally to manage state. This object contains the functions and these can be individually extracted by using ES6 object destructuring.
+
+- `createNode`: create a new node to generate queries in graphql.
+
+  - `id`: the node’s ID. Must be globally unique.
+  - `parent`: the ID of the parent’s node. If the node is derived from another node, set that node as the parent. Otherwise it can just be null.
+  - `children`: an array of children node IDs. It creates `childrenFirebaseWine` on graphql application.
+  - `internal`: [object]
+    - `type`: create a type on graphql.
+    - `contentDigest`: the digest for the content of this node. Helps Gatsby avoid doing extra work on data that hasn’t changed.
+
+<br/>
+
+- `createPages`: create pages dynamically.
+  - `path`: any valid URL. Must start with a forward slash.
+  - `component`: the absolute path to the component for this page.
+  - `context`: context data for this page. Passed as props to the component `this.props.pageContext` as well as to the graphql query as graphql arguments.
 
 ---
 
