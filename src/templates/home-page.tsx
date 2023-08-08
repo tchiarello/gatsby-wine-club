@@ -1,7 +1,11 @@
-import * as React from "react";
-import { graphql, Link } from "gatsby";
-import styled from "styled-components";
-import Header from "../components/Header";
+import * as React from 'react';
+import {graphql, Link} from 'gatsby';
+import styled from 'styled-components';
+import Header from '../components/Header';
+
+interface CardProps {
+  image: string;
+}
 
 const Container = styled.div`
   max-width: 950px;
@@ -21,7 +25,7 @@ const Container = styled.div`
   }
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<CardProps>`
   position: relative;
   overflow: hidden;
   height: 250px;
@@ -38,7 +42,7 @@ const CardContainer = styled.div`
   background-position: center;
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;

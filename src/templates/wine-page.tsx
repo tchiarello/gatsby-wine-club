@@ -113,7 +113,6 @@ const StarsInner = styled.div`
   left: 0;
   white-space: nowrap;
   overflow: hidden;
-  /* width: ${(props) => props.percentage}; */
 
   &:before {
     content: '\f005 \f005 \f005 \f005 \f005';
@@ -185,7 +184,7 @@ export const query = graphql`
 
     similarWines: allFirebaseWine(
       filter: {categoryId: {eq: $categoryId}, wineId: {nin: [$wineId]}}
-      sort: {fields: rating___average, order: DESC}
+      sort: {rating: {average: DESC}}
       limit: 2
     ) {
       nodes {
