@@ -30,27 +30,20 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 
   const allWines = await collection(db, 'wines');
   const winesSnapshot = await getDocs(allWines);
-  // const allWines = await firebase
-  //   .firestore()
-  //   .collection('/wines')
-  //   .limit(1000)
-  //   .get();
   const winesData = winesSnapshot.docs.map((doc) => doc.data());
 
-  // cria nodes gatsby para gerar queries no graphql
   categoriesData.forEach((category) => {
     actions.createNode({
       ...category,
       categoryId: category.id,
       id: `firebase-categories-${category.id}`,
       parent: null,
-      // cria o childrenFirebaseWine no graphql
       children: winesData
-        .filter((wine) => wine.categoryId === category.id) // filtra os vinhos da mesma categoria
-        .map((wine) => `firebase-wines-${category.id}-${wine.id}`), // retorna a array de strings - esse id é igual ao id do winesData
+        .filter((wine) => wine.categoryId === category.id)
+        .map((wine) => `firebase-wines-${category.id}-${wine.id}`),
       internal: {
-        type: 'FirebaseCategory', // cria um tipo no graphql
-        contentDigest: createContentDigest(category), // Ajuda Gatsby a evitar trabalho extra em dados que não foram alterados.
+        type: 'FirebaseCategory',
+        contentDigest: createContentDigest(category),
       },
     });
   });
@@ -103,7 +96,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
       path: `/categories/${category.categoryId}`,
       component: path.resolve('./src/templates/category-page.tsx'),
       context: {
-        categoryId: category.categoryId, // para resgatar o valor e fazer a query na pagina. Vem como parametro na query do graphql
+        categoryId: category.categoryId,
       },
     });
   });
