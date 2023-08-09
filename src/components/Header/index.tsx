@@ -1,26 +1,21 @@
 import * as React from 'react';
-import {Link} from 'gatsby';
+import {Link, navigate, withPrefix} from 'gatsby';
 import logo from '../../images/wine-club-logo.png';
+import Button from '../../components/Button';
+import * as S from './header.styles';
 
-import styled from 'styled-components';
+const Header = () => {
+  const isHomepage = location.pathname === withPrefix('/');
 
-const Container = styled.div`
-  text-align: center;
-  padding: 20px 10px;
-  margin-bottom: 100px;
-`;
-
-const Image = styled.img`
-  width: 100px;
-  cursor: pointer;
-`;
-
-export default function Header() {
   return (
-    <Container>
+    <S.Container>
+      {!isHomepage && <Button goBack onClick={() => navigate(-1)} />}
       <Link to="/">
-        <Image src={logo} alt="Logo Wine Club" />
+        <S.Logo src={logo} alt="Logo Wine Club" />
       </Link>
-    </Container>
+      {!isHomepage && <S.EmptyContent />}
+    </S.Container>
   );
-}
+};
+
+export default Header;
