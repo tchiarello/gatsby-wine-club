@@ -4,7 +4,6 @@ import Layout from '../components/Layout';
 import CategoryCard from '../components/CategoryCard';
 
 const Homepage = (props) => {
-  console.log(props);
   return (
     <>
       <title>Wine Club</title>

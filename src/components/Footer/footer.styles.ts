@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 60%;
   margin: 0 auto;
   text-align: center;
-  padding: 20px 10px;
+  padding: 20px;
   border-top: 1px solid var(--color-theme-3);
 
   span {
