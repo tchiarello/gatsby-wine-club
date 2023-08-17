@@ -19,7 +19,7 @@ const CategoryCard: React.FC<CategoryCard> = ({data}) => {
       {data.allFirebaseCategory.nodes.map((obj, index) => {
         return (
           <S.StyledLink key={index} to={`/categories/${obj.categoryId}`}>
-            <S.CardContainer image={obj.image}>
+            <S.CardContainer $image={obj.image}>
               <S.Title>{obj.title}</S.Title>
             </S.CardContainer>
           </S.StyledLink>

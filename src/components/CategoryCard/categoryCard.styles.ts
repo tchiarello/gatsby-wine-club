@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {Link} from 'gatsby';
 
 interface CardProps {
-  image: string;
+  $image: string;
 }
 
 export const Container = styled.div`
@@ -36,7 +36,7 @@ export const CardContainer = styled.div<CardProps>`
   display: flex;
   flex-direction: column-reverse;
   padding: 10px 10px 40px 10px;
-  background-image: ${(props) => `url("${props.image}")`};
+  background-image: ${(props) => `url("${props.$image}")` || `url("")`};
   background-size: cover;
   background-position: center;
 
