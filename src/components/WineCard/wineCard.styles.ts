@@ -1,41 +1,61 @@
 import {Link} from 'gatsby';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const StyledLink = styled(Link)`
+  margin: 0 auto;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
-  color: black;
-  border: 2px solid black;
-  border-radius: 10px;
-  height: 205px;
-  padding: 15px 50px;
+  justify-content: center;
+  text-decoration: none;
+  border: 1px solid var(--color-dark);
+  overflow: hidden;
+  transition: all 0.3s;
 
-  &:hover img {
-    transform: scale(1.4);
+  &:hover {
+    transform: scale(1.03);
   }
 `;
 
-export const StyledLink = styled(Link)`
-  text-decoration: none;
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px 10px 0 0;
+  width: 250px;
+  height: 250px;
+  padding: 15px 50px;
+  background-color: var(--color-light);
 `;
 
 export const Image = styled.img`
-  margin-right: 50px;
-  transform: scale(1.3);
-  transition: all 0.3s;
+  height: 200px;
+  width: auto;
+`;
+
+export const Description = styled.div`
+  background-color: var(--color-dark);
+  position: relative;
+  width: 250px;
+  height: 150px;
+  border: 1px solid var(--color-light);
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
 `;
 
 export const WineTitle = styled.h3`
-  font-size: 18px;
+  font-size: 16px;
+  color: var(--color-light);
+  margin-bottom: 10px;
 `;
 
 export const Winery = styled.p`
   font-size: 14px;
+  color: var(--color-light);
   margin-bottom: 10px;
 `;
 
 export const WineLocation = styled.span`
-  font-size: 14px;
-  color: #939393;
+  font-size: 12px;
+  color: var(--color-light);
 `;
