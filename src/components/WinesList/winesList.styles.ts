@@ -3,11 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 20px;
   margin-bottom: 50px;
-`;
-
-export const Title = styled.h1`
-  text-align: center;
-  margin-bottom: 50px;
+  margin-top: 500px;
 `;
 
 export const WinesContainer = styled.div`
