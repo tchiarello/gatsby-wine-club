@@ -2116,7 +2116,7 @@ type getDataQueryVariables = Exact<{
 }>;
 
 
-type getDataQuery = { readonly firebaseCategory: { readonly title: string | null, readonly categoryId: string | null, readonly childrenFirebaseWine: ReadonlyArray<{ readonly image: string | null, readonly wine: string | null, readonly wineId: number | null, readonly location: string | null, readonly winery: string | null } | null> | null } | null };
+type getDataQuery = { readonly firebaseCategory: { readonly title: string | null, readonly categoryId: string | null, readonly image: string | null, readonly childrenFirebaseWine: ReadonlyArray<{ readonly image: string | null, readonly wine: string | null, readonly wineId: number | null, readonly location: string | null, readonly winery: string | null } | null> | null } | null };
 
 type getWineQueryVariables = Exact<{
   wineId: InputMaybe<Scalars['Int']>;
