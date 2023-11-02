@@ -1,18 +1,23 @@
 import * as React from 'react';
 import {graphql} from 'gatsby';
-import Layout from '../components/Layout';
+import {CategoryPageProps} from 'types/types';
 import WinesList from '../components/WinesList';
+import * as S from '../styles/categoryPage.styles';
 
-const CategoryPage = (props) => {
+const CategoryPage = (props: CategoryPageProps) => {
   const data = props.data.firebaseCategory;
 
   return (
     <div>
       <title>{data.title}</title>
 
-      <Layout>
-        <WinesList data={data} />
-      </Layout>
+      <S.Hero $image={data.image}>
+        <S.TitleContainer>
+          <S.Title>{data.title}</S.Title>
+        </S.TitleContainer>
+      </S.Hero>
+
+      <WinesList data={data} />
     </div>
   );
 };
@@ -31,6 +36,7 @@ export const query = graphql`
       }
       title
       categoryId
+      image
     }
   }
 `;

@@ -1,15 +1,13 @@
 import * as React from 'react';
 import {graphql} from 'gatsby';
-import Layout from '../components/Layout';
+import {HomepageProps} from 'types/types';
 import CategoryCard from '../components/CategoryCard';
 
-const Homepage = (props) => {
+const Homepage = (props: HomepageProps) => {
   return (
     <>
       <title>Wine Club</title>
-      <Layout>
-        <CategoryCard data={props.data} />
-      </Layout>
+      <CategoryCard data={props.data} />
     </>
   );
 };
