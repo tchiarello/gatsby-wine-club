@@ -1,6 +1,6 @@
 import './src/styles/global.css';
 import React from 'react';
-import type {GatsbyBrowser} from 'gatsby';
+import type {GatsbySSR} from 'gatsby';
 import Layout from './src/components/Layout';
 
 export const onInitialClientRender = () => {
@@ -10,7 +10,7 @@ export const onInitialClientRender = () => {
   );
 };
 
-export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
+export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({
   element,
   props,
 }) => {
