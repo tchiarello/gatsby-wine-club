@@ -7,7 +7,7 @@ const Layout: React.FC<{children: React.ReactNode}> = ({children}) => {
     <>
       <Header />
 
-      {children}
+      <main>{children}</main>
 
       <Footer />
     </>

@@ -30,7 +30,7 @@ export const CardContainer = styled.div<CardProps>`
   height: 250px;
   margin-bottom: 30px;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 4px;
   transition: all 0.3s;
   background-color: grey;
   display: flex;

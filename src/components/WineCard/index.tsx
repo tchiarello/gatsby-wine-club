@@ -18,7 +18,6 @@ const WineCard: React.FC<WineCardProps> = (props) => {
       </S.Container>
       <S.Description>
         <S.WineTitle>{props.wine}</S.WineTitle>
-        <S.Winery>{props.winery}</S.Winery>
         <S.WineLocation>{props.location}</S.WineLocation>
       </S.Description>
     </S.StyledLink>
